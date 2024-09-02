@@ -1,0 +1,269 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/6700fb65a7.js" crossorigin="anonymous"></script>
+        <title>Weather Forcast</title>
+    </head>
+
+    <body>
+        <div class="main-class col-10 display-flex align-item-center text-align margin-auto space-between">
+            <div class="col-5" style="margin: 3% 0 3% 3%;">
+                <img src="/arrow1.png" alt="arrow" style="margin: 15% 0 0 65%;">
+
+                <div class="location-class">
+                    <p class="weather-app-class">Weather App</p>
+                    
+                    <input id="cityName" type="text" placeholder="Enter city name" class="col-11 text-center"/>
+                    
+                    <div class="col-12 display-flex align-item-center text-center" >
+                        <hr class="col-4" style="margin: 1% 0 0 4%; width: 210px;"/>
+                        <p class="col-1">or</p>
+                        <hr class="col-4" style="margin-top: 1%; width: 210px;"/>
+                    </div>
+                    
+                    <button class="col-11 text-center" onclick="getLocation()">Get Device Location</button>
+                </div>
+            </div>
+
+            <div class="col-6 weather-class">
+                <div class="weather-app-class col-12 display-flex">
+                    <i class="fa-solid fa-arrow-left col-1" style="margin-top: 4px;"></i>
+                    <p class="col-4" style="margin-left: -15px;">Weather App</p>
+                </div>
+
+                <div class="align-item-center text-center">
+                    <img id="weatherImage" src="/icons/cloud.svg" alt="weather" style="margin-top: 7%; width: 200px ; height: 200px;">
+                    <p id="temprature" class="temprature-class">13°C</p>
+                    <p id="weatherType" class="weather-type-class">Broken Clouds</p>
+                    <div class="col-12 display-flex place-class">
+                        <i class="fa-solid fa-location-dot col-1"></i>
+                        <p id="place" class="col-4">Kathmandu, Nepal</p>
+                    </div>
+                </div>
+
+                <div class="col-12 display-flex" style="border-top: 2px solid rgb(173, 173, 173);">
+                    <div class="col-5 display-flex feel-like-class">
+                        <i class="fa-solid fa-temperature-empty col-2"></i>
+                        <div class="col-4">
+                            <p id="feelLike" style="font-size: 25px; font-weight: bold;">17°C</p>
+                            <p style="font-size: 17px;">Feels like</p>
+                        </div>
+                    </div>
+
+                    <div class="col-4 display-flex humidity-class">
+                        <i class="fa-solid fa-droplet col-3"></i>
+                        <div class="col-4">
+                            <p id="humidity" style="font-size: 25px; font-weight: bold;">84%</p>
+                            <p style="font-size: 17px;">Humidity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <style>
+
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        html {
+            scroll-behavior: smooth;
+        }
+    
+        .text-center {
+            text-align: center;
+        }
+    
+        .display-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .align-item-center {
+            align-items: center;
+        }
+    
+        .space-between {
+            justify-content: space-between;
+        }
+    
+        .space-around {
+            justify-content: space-around;
+        }
+    
+        .flex-column {
+            flex-direction: column;
+        }
+    
+        .margin-auto {
+            margin: auto;
+        }
+
+        .main-class {
+            border: 2px solid rgb(1, 91, 202);
+            border-radius: 8px;
+            background-color: rgb(57, 146, 255);
+            margin: 10%;
+            padding: 20px;
+        }
+
+        .location-class{
+            border: 1px solid rgb(1, 91, 202);
+            border-radius: 8px;
+            background-color: white;
+            margin-top: 13.5%;
+        }
+
+        .weather-app-class {
+            color: rgb(57, 146, 255);
+            font-size: x-large;
+            font-weight: bold;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            padding: 20px;
+            margin: 3% 3% 3% 0;
+        }
+
+        .location-class input {
+            border: 2px solid rgb(173, 173, 173);
+            border-radius: 8px;
+            color: rgb(129, 129, 129);
+            font-size: large;
+            font-weight: bold;
+            padding: 15px;
+            margin: 7% 0 6% 4%;
+        }
+
+        .location-class hr {
+            border-bottom: none;
+            border-right: none;
+            border-left: none;
+            border-top: 2px solid rgb(173, 173, 173);
+        }
+
+        .location-class button {
+            border: 1px solid rgb(1, 91, 202);
+            background-color: rgb(57, 146, 255);
+            border-radius: 8px;
+            color: white;
+            font-size: large;
+            font-weight: bold;
+            padding: 15px;
+            margin: 7% 0 7% 4%;
+        }
+
+        .location-class button:hover {
+            cursor: pointer;
+        }
+
+        .weather-class {
+            border: 1px solid rgb(1, 91, 202);
+            border-radius: 8px;
+            background-color: white;
+            margin: 5% 3% 5% 0;
+
+        }
+
+        .temprature-class {
+            font-size: 80px;
+            font-weight: bolder;
+            margin-top: 5%;
+        }
+
+        .weather-type-class {
+            font-size: 25px;
+            margin-top: 3%;
+        }
+
+        .place-class {
+            font-size: 20px;
+            margin-top: 3%;
+            margin-bottom: 7%;
+        }
+
+        .place-class i {
+            margin-left: 30%;
+        }
+
+        .place-class p {
+            margin-left: -5%;
+        }
+        
+        .feel-like-class {
+            padding: 15px; 
+            margin-left: 10%; 
+            border-right: 2px solid rgb(173, 173, 173);
+        }
+
+        .feel-like-class i {
+            font-size: 45px; 
+            color: rgb(57, 146, 255);
+        }
+        
+        .humidity-class {
+            padding: 15px; 
+            margin-left: 10%;
+
+        }
+
+        .humidity-class i {
+            font-size: 45px; 
+            color: rgb(57, 146, 255);
+        }
+
+
+
+
+        .col-1 {
+            width: 8.33%;
+        }
+    
+        .col-2 {
+            width: 16.66%;
+        }
+    
+        .col-3 {
+            width: 25%;
+        }
+    
+        .col-4 {
+            width: 33.33%;
+        }
+    
+        .col-5 {
+            width: 41.66%;
+        }
+    
+        .col-6 {
+            width: 50%;
+        }
+    
+        .col-7 {
+            width: 58.33%;
+        }
+    
+        .col-8 {
+            width: 66.66%;
+        }
+    
+        .col-9 {
+            width: 75%;
+        }
+    
+        .col-10 {
+            width: 83.33%;
+        }
+    
+        .col-11 {
+            width: 91.66%;
+        }
+    
+        .col-12 {
+            width: 100%;
+        }
+    
+    </style>
+    <script src="script.js"></script>
+</html>
